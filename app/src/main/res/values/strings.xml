@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lab3_TIP_calculator</string>
+    <string name="txt_Num_Dinner">Number of diners</string>
+    <string name="txt_Price_Before_Tax">Price of meal before tax</string>
+    <string name="txt_Percent_Of_TIP">Percentage you woud like to TIP</string>
+    <string name="edTxt_Number_Of_Diners" />
+    <string name="edTxt_Price" />
+    <string name="edTXT_Percentage_TIP" />
+    <string name="btn_OK">Confirm</string>
+    <string name="btn_Confirm">Confirm</string>
+    <string name="txt_Result" />
+</resources>
