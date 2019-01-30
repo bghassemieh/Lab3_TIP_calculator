@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -26,8 +28,20 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                b_confirm.setText("hello");
-                text_result.setText("This price of the meal is: " + price_meal.getText().toString()+"$" + "\n" + "sdfg");
+                String priceOfDinner = price_meal.getText().toString();
+                String gstAmount = new DecimalFormat("####.##")
+                        .format(Double.parseDouble(priceOfDinner) * 0.05);
+                String qstAmount = new DecimalFormat("####.##")
+                        .format(Double.parseDouble(priceOfDinner) * 0.09975);
+                String totalPrice = new DecimalFormat("####.##")
+                        .format(Double.parseDouble(priceOfDinner)+
+                                Double.parseDouble(gstAmount)+
+                                Double.parseDouble(qstAmount));
+
+
+                text_result.setText("The price of the meal is: " + price_meal.getText().toString()+"$" +
+                        "\n" + "GST amount is " + "$"+ gstAmount +"\n" + "QST amount is " +"$" + qstAmount
+                        +"\n" + "Total amount is " + "$" + totalPrice);
 
             }
         });
