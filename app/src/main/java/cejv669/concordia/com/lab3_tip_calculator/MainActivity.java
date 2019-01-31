@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final EditText number_diners = findViewById(R.id.edTxt_Number_Of_Diners);
         final EditText price_meal = findViewById(R.id.edTxt_Price);
+        final EditText tax_price = findViewById(R.id.edTXT_Percentage_TIP);
         final Button b_confirm = findViewById(R.id.btn_Confirm);
         final TextView text_result = findViewById(R.id.txt_Result);
 
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                String numberOfDiners = number_diners.getText().toString();
                 String priceOfDinner = price_meal.getText().toString();
+                String taxPrice = tax_price.getText().toString();
                 String gstAmount = new DecimalFormat("####.##")
                         .format(Double.parseDouble(priceOfDinner) * 0.05);
                 String qstAmount = new DecimalFormat("####.##")
@@ -37,11 +41,19 @@ public class MainActivity extends AppCompatActivity {
                         .format(Double.parseDouble(priceOfDinner)+
                                 Double.parseDouble(gstAmount)+
                                 Double.parseDouble(qstAmount));
+                String taxAmount = new DecimalFormat("#.##")
+                        .format(Double.parseDouble(taxPrice)/100 * Double.parseDouble(priceOfDinner));
+
+                String tipPerPerson = new DecimalFormat("####.###")
+                        .format(Double.parseDouble(taxAmount)/Double.parseDouble(numberOfDiners));
+
 
 
                 text_result.setText("The price of the meal is: " + price_meal.getText().toString()+"$" +
-                        "\n" + "GST amount is " + "$"+ gstAmount +"\n" + "QST amount is " +"$" + qstAmount
-                        +"\n" + "Total amount is " + "$" + totalPrice);
+                        "\n" + "GST amount is " + "$"+ gstAmount +"\n" + "QST amount is " +"$" + qstAmount +
+                        "\n" + "Total amount is " + "$" + totalPrice +
+                        "\n" + "Tip amount is " +"$" +taxAmount +
+                        "\n" + "Tip per person is " + "$" + tipPerPerson);
 
             }
         });
